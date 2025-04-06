@@ -1,0 +1,9 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 876803286943.dkr.ecr.ap-southeast-1.amazonaws.com
+      - docker build -t alfiang/my-node-app .
+      - docker tag alfiang/my-node-app:latest 876803286943.dkr.ecr.ap-southeast-1.amazonaws.com/alfiang/my-node-app:latest
+      - docker push 876803286943.dkr.ecr.ap-southeast-1.amazonaws.com/alfiang/my-node-app:latest
